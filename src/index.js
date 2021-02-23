@@ -8,42 +8,25 @@ const Theme = {
 
 const themeRef = document.querySelector('#theme-switch-toggle');
 themeRef.addEventListener('change', changeTheme);
-// document.body.classList.add(Theme['LIGHT']);
 
-if (localStorage.getItem('Theme')) {
+if (localStorage.getItem('Theme', (Theme['DARK']))) {
   document.body.classList.add((Theme['DARK']));
-}
+} else {
+  localStorage.setItem('Theme', (Theme['LIGHT']));
+};
+
 function changeTheme(event) {
-  // document.body.classList.toggle(Theme['LIGHT']); 
-  // document.body.classList.toggle(Theme['DARK']);
-
-  //  if (event.target.checked) {
-  //    localStorage.setItem('Theme', (Theme['DARK'])); 
-  //    document.body.classList.add(Theme['DARK']);
-  //    localStorage.removeItem('Theme', (Theme['LIGHT']));
-  //    document.body.classList.remove(Theme['LIGHT']);
-  // } else {
-  //    localStorage.setItem('Theme', (Theme['LIGHT'])); 
-  //    document.body.classList.add(Theme['LIGHT']);
-  //    localStorage.removeItem('Theme', (Theme['DARK'])); 
-  //    document.body.classList.remove(Theme['DARK']);
-  // }
-
   if (document.body.classList.contains(Theme['DARK'])) {
     document.body.classList.add(Theme['LIGHT']);
     localStorage.removeItem('Theme', (Theme['DARK']));
     document.body.classList.remove(Theme['DARK']);
-     
+    // localStorage.setItem('Theme', (Theme['LIGHT'])); 
   } else {
-     event.target.checked = 'true';
-    localStorage.setItem('Theme', (Theme['DARK']));
+     event.target.checked = true;
+    localStorage.setItem('Theme',(Theme['DARK']));
     document.body.classList.add(Theme['DARK']);
     document.body.classList.remove(Theme['LIGHT']);
+    // localStorage.removeItem('Theme',(Theme['LIGHT']));
   };
-  console.log(event.target.checked);
-  // if (document.body.classList.contains(Theme['DARK'])) {
-  //   document.body.classList.add(Theme['DARK']);
-  // } else {
-  //   document.body.classList.add(Theme['LIGHT']);
-  // };
-}; 
+  };
+ 
